@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet'  type='text/css'>
+</head>
+
+<body>
+
+{% include "renderers/base.html" %}
+
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Market Capital</th>
+                <th>Sector</th>
+                <th>Industry</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in company_data %}
+                <tr>
+                    <td>{{company.symbol}}</td>
+                    <td>{{company.name}}</td>
+                    <td>{{company.market_capital}}</td>
+                    <td>{{company.sector}}</td>
+                    <td>{{company.industry}}</td>
+                    
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+</table>   
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "pagingType": "full_numbers",
+        "bFilter" : "false"
+    } );
+} );
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+</body>
+
+

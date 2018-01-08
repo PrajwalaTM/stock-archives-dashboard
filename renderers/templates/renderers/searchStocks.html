@@ -1,0 +1,57 @@
+{% load staticfiles %}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet'  type='text/css'>
+</head>
+
+<body>
+
+{% include "renderers/base.html" %}
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Open</th>
+                <th>Close</th>
+                <th>Low</th>
+                <th>High</th>
+                <th>Volume</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for key,values in value_pairs.items %}
+                <tr>
+                    <td>{{key}}</td>
+                    {% for v in values%}
+                    <td>{{v.open}}</td>
+                    <td>{{v.close}}</td>
+                    <td>{{v.low}}</td>
+                    <td>{{v.high}}</td>
+                    <td>{{v.volume}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+</table>   
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "pagingType": "full_numbers",
+        
+    } );
+} );
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+</body>
+
+
+
+
